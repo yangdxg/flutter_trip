@@ -17,3 +17,4 @@ class CommonModel {
         hideAppBar: json['hideAppBar']);
   }
 }
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_trip/dao/search_dao.dart';
 import 'package:flutter_trip/model/search_model.dart';
+import 'package:flutter_trip/pages/speak_page.dart';
 import 'package:flutter_trip/widget/search_bar.dart';
 import 'package:flutter_trip/widget/webview.dart';
 
@@ -43,6 +44,14 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   SearchModel searchModel;
   String keyword;
+
+  @override
+  void initState() {
+    if (widget.keyword != null) {
+      _onTextChange(widget.keyword);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +114,7 @@ class _SearchPageState extends State<SearchPage> {
               hideLeft: widget.hideLeft,
               defaultText: widget.keyword,
               hint: widget.hint,
+              speckClick: _jumpToSpeak,
               leftButtonClick: () {
                 Navigator.pop(context);
               },
@@ -114,6 +124,11 @@ class _SearchPageState extends State<SearchPage> {
         )
       ],
     );
+  }
+
+  _jumpToSpeak() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SpeakPage()));
   }
 
   Widget _item(int position) {
@@ -217,6 +232,8 @@ class _SearchPageState extends State<SearchPage> {
     }
     return spans;
   }
+
+
 }
 
 
